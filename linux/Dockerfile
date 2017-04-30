@@ -18,6 +18,8 @@ RUN rm -rf /var/lib/apt/lists/*
 # RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe"> /etc/apt/sources.list
 RUN  apt-get update -y
 RUN  apt-get install -y vim wget curl openssh-server sudo
+RUN  apt-get install -y net-tools
+RUN  apt-get install -y iputils-ping
 RUN  mkdir -p /var/run/sshd
 
 # 安装supervisor工具
@@ -34,8 +36,16 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
+# 免密
+RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
+RUN echo "source /etc/profile" >> ~/.bashrc
+RUN echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN echo "    UserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
+
 
 # RUN echo "root   ALL=(ALL)       ALL" >> /etc/sudoers
 
