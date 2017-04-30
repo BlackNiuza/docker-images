@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker run -h node1 \
-	-p 9999:22 \
+docker run -h hadoop \
+	-p 10004:22 \
 	-p 9000:9000 \
 	-p 8088:8088 \
 	-p 50020:50020 \

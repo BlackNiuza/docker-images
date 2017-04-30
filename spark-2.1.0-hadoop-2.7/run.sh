@@ -1,11 +1,9 @@
 #!/bin/bash
 
-docker run -h node1 \
-	-p 9999:22 \
-	-p 9000:9000 \
-	-p 8088:8088 \
-	-p 50020:50020 \
-	-p 50070:50070 \
-	-p 50075:50075 \
-	-p 50090:50090 \
+source build.sh
+
+docker run -h spark \
+	-p 10005:22 \
+	-p 7077:7077 \
+	-p 8089:8089 \
 	-it "blackniuza/spark-2.1.0-hadoop-2.7"

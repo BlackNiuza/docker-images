@@ -31,14 +31,14 @@
 	</property>
   <property>
     <name>dfs.datanode.ipc.address</name>
-    <value>node1:50020</value>
+    <value>hadoop:50020</value>
   </property>
   <property>
     <name>dfs.datanode.http.address</name>
-    <value>node1:50075</value>
+    <value>hadoop:50075</value>
   </property>
   <property>
     <name>dfs.namenode.secondary.http-address</name>
-    <value>node1:50090</value>
+    <value>hadoop:50090</value>
   </property>
 </configuration>

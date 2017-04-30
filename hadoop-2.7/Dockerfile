@@ -3,7 +3,7 @@
 # desc : 当前版本安装的jdk8
 ############################################
 # 设置继承自我们创建的 tools 镜像
-FROM blackniuza/scala-2.11
+FROM blackniuza/jdk-8
 
 # 下面是一些创建者的基本信息
 MAINTAINER blackniuza
