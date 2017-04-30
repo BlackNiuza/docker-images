@@ -3,7 +3,7 @@
 # desc : 当前版本安装的ssh，wget，curl，supervisor 
 ############################################
 # 设置继承自ubuntu官方镜像
-FROM ubuntu:14.04
+FROM ubuntu
 
 # 下面是一些创建者的基本信息
 MAINTAINER blackniuza
@@ -12,13 +12,13 @@ MAINTAINER blackniuza
 ENV DEBIAN_FRONTEND noninteractive
 
 # 清空ubuntu更新包
-RUN sudo rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 
 # 一次性安装vim，wget，curl，ssh server等必备软件
 # RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe"> /etc/apt/sources.list
-RUN sudo apt-get update
-RUN sudo apt-get install -y vim wget curl openssh-server sudo
-RUN sudo mkdir -p /var/run/sshd
+RUN  apt-get update -y
+RUN  apt-get install -y vim wget curl openssh-server sudo
+RUN  mkdir -p /var/run/sshd
 
 # 将sshd的UsePAM参数设置成no
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
@@ -32,8 +32,8 @@ RUN echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers
 RUN usermod -s /bin/bash admin
 
 # 安装supervisor工具
-RUN sudo apt-get install -y supervisor
-RUN sudo mkdir -p /var/log/supervisor
+RUN  apt-get install -y supervisor
+RUN  mkdir -p /var/log/supervisor
 
 # 添加 supervisord 的配置文件，并复制配置文件到对应目录下面。（supervisord.conf文件和Dockerfile文件在同一路径）
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
