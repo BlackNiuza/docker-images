@@ -14,6 +14,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # 复制 hadoop-2.7.1 文件到镜像中（hadoop-2.7.1 文件夹要和Dockerfile文件在同一路径）
 ADD lib/hadoop-2.7.3 /software/hadoop-2.7
 COPY conf/* /software/hadoop-2.7/etc/hadoop/
+
+# hadoop start shell
 RUN mkdir -p /root/hadoop
 ADD bin/start-hadoop.sh /root/hadoop/
 RUN chmod 777 /root/hadoop/start-hadoop.sh
