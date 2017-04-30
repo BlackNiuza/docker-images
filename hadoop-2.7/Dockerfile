@@ -16,6 +16,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # 复制 hadoop-2.7.1 文件到镜像中（hadoop-2.7.1 文件夹要和Dockerfile文件在同一路径）
 ADD lib/hadoop-2.7.3 /software/hadoop-2.7
+ADD conf/* /software/hadoop-2.7/etc/hadoop
 
 # 设置 hadoop 的环境变量，若读者有其他的环境变量需要设置，也可以在这里添加。
 ENV HADOOP_HOME /software/hadoop-2.7
@@ -26,6 +27,3 @@ VOLUME ["/data/hadoop"]
 
 # 容器需要开放Hadoop 9000端口
 EXPOSE 9000
-
-# 执行supervisord来同时执行多个命令，使用 supervisord 的可执行路径启动服务。
-CMD ["/usr/bin/supervisord"]
