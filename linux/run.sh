@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -p 9999:22 -t -i "blackniuza/linux"
+docker run -h node1 -p 9999:22 -it "blackniuza/linux"

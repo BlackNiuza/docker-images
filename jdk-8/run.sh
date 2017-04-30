@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -p 9999:22 -t -i "blackniuza/jdk-8"
+docker run -h node1 -p 9999:22 -it "blackniuza/jdk-8"
